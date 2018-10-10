@@ -1,7 +1,7 @@
 {
-  "name": "slate-doc-cn",
-  "version": "0.24.1",
-  "description": "slate.js doc Chinese translation",
+  "name": "slatets-doc-cn",
+  "version": "0.37.1",
+  "description": "slatets.js doc Chinese doc",
   "dependencies": {
     "gitbook-plugin-prism": "^2.3.0",
     "gitbook-plugin-github": "^2.0.0"
@@ -15,9 +15,10 @@
   },
   "keywords": [
     "slate",
+    "slatets",
     "doc"
   ],
-  "repository": "https://github.com/doodlewind/slate-doc-cn.git",
-  "author": "doodlewind",
+  "repository": "https://github.com/kanweiwei/slatets-doc-cn.git",
+  "author": "kanweiwei",
   "license": "MIT"
 }

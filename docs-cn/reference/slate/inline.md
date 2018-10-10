@@ -5,27 +5,28 @@
 import { Inline } from 'slate'
 ```
 
-Slate [`Document`](./document.md) Inline 节点实现了 [`Node`](./node.md) 接口。
+Slate [`Document`](./Document.md) Inline 节点实现了 [`Node`](./Node.md) 接口。
 
 Block 节点可以包含嵌套的 inline 节点以及 text 节点——就像 DOM 一样。它始终包含至少一个 text 节点作为子节点。
 
-- [Properties](#properties)
+- [属性](#属性)
   - [`data`](#data)
   - [`isVoid`](#isvoid)
   - [`key`](#key)
   - [`nodes`](#nodes)
   - [`type`](#type)
-- [Computed Properties](#computed-properties)
+- [计算属性](#计算属性)
   - [`kind`](#kind)
   - [`text`](#text)
-- [Static Methods](#static-methods)
-  - [`Inline.create`](#inlinecreate)
-  - [`Inline.createList`](#inlinecreatelist)
-  - [`Inline.fromJSON`](#inlinefromjson)
-  - [`Inline.isInline`](#inlineisinline)
-- [Node Methods](#node-methods)
-- [Instance Methods](#instance-methods)
-  - [`toJSON`](#tojson)
+- [静态方法](#静态方法)
+  - [`create`](#create)
+  - [`createList`](#createList)
+  - [`fromJSON`](#fromJSON)
+  - [`isInline`](#isInline)
+  - [`isInlineList`](#isInlineList)
+- [实例方法](#实例方法)
+  - [`toJSON`](#toJSON)
+  - [`toJS`](#toJS)
 
 
 ## Properties
@@ -68,50 +69,66 @@ Inline({
 节点的自定义类型（如 `link` 或 `hashtag`）。
 
 
-## Computed Properties
-
-### `kind`
+## 计算属性
+### `object`
 `String`
 
-不可变的 String，值为 `'inline'` 以便于将这类节点与 [`Block`](./block.md) 和 [`Text`](./text.md) 节点区分开。
+不可变的 String，值为 `'inline'` 以便于将这类节点与 [`Block`](./Block.md) 和 [`Text`](./Text.md) 节点区分开。
+
+
+### ~~`kind`~~ 废弃
+`String`
+
+不可变的 String，值为 `'inline'` 以便于将这类节点与 [`Block`](./Block.md) 和 [`Text`](./Text.md) 节点区分开。
 
 ### `text`
 `String`
 
-该节点的全部子 [`Text`](./text.md) 节点连接成的字符串。
+该节点的所有子 [`Text`](./Text.md) 节点内容拼接成的字符串。
 
 
-## Static Methods
+## 静态方法
 
-### `Inline.create`
-`Inline.create(properties: Object) => Inline`
+### `create`
+`create(properties: Object) => Inline`
 
 由原生 JS `properties` 对象创建一个 inline。
 
-### `Inline.createList`
-`Inline.createList(array: Array) => List`
+### `createList`
+`createList(elements: Array<Any> | List<Any>) => List`
 
-由原生 JS `array` 数组创建一个 inline 列表。
+由原生 JS `array` 数组 或者 `List` 创建一个 inline 的 `List`。
 
-### `Inline.fromJSON`
-`Inline.fromJSON(object: Object) => Inline`
+### `fromJSON`
+`fromJSON(object: Object) => Inline`
 
 由 JSON `object` 创建一个 inline。
 
-### `Inline.isInline`
-`Inline.isInline(maybeInline: Any) => Boolean`
+### `fromJS`
+`alias fromJSON`
 
-返回传入的参数是否为 `Inline` 的 boolean 值。
+### `isInline`
+`isInline(maybeInline: Any) => Boolean`
+
+返回传入的参数是否为 `Inline`。
+
+### `isInlineList`
+`isInlineList(elements: Any) => Boolean`
+
+返回传入的参数是否为多个 `Inline` 节点组成的 `List`。
 
 
-## Node Methods
-
-Inline 实现了 [`Node`](./node.md) 接口。对所有 node 方法的相关信息，参见 [`Node` 文档](./node.md)。
-
-
-## Instance Methods
+## 实例方法
 
 ### `toJSON`
 `toJSON() => Object`
 
 返回 inline 的 JSON 表示。
+
+### `toJS`
+`alias toJS`
+
+### `isEmpty`
+isEmpty() => Boolean
+
+是否是空节点。

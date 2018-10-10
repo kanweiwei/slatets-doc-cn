@@ -9,26 +9,28 @@ Slate [`Document`](./document.md) 中的块级节点。Block 节点实现了 [`N
 
 Block 节点可以包含嵌套的 block 节点、inline 节点，以及 text 节点——就像 DOM 一样。它始终包含至少一个 text 节点作为子节点。
 
-- [Properties](#properties)
+- [属性](#属性)
   - [`data`](#data)
   - [`isVoid`](#isvoid)
   - [`key`](#key)
   - [`nodes`](#nodes)
   - [`type`](#type)
-- [Computed Properties](#computed-properties)
+- [计算属性](#计算属性)
+  - [`object`](#object)
   - [`kind`](#kind)
   - [`text`](#text)
-- [Static Methods](#static-methods)
-  - [`Block.create`](#blockcreate)
-  - [`Block.createList`](#blockcreatelist)
-  - [`Block.fromJSON`](#blockfromjson)
-  - [`Block.isBlock`](#blockisblock)
-- [Node Methods](#node-methods)
-- [Instance Methods](#instance-methods)
+- [静态方法](#静态方法)
+  - [`create`](#create)
+  - [`createList`](#createList)
+  - [`fromJSON`](#fromJSON)
+  - [`fromJS`](#fromJS)
+  - [`isBlock`](#isBlock)
+  - [`isBlockList`](#isBlockList)
+- [实例方法](#实例方法)
   - [`toJSON`](#tojson)
 
 
-## Properties
+## 属性
 
 ```js
 Block({
@@ -68,50 +70,63 @@ Block({
 节点的自定义类型（如 `blockquote` 或 `list-item`）。
 
 
-## Computed Properties
+## 计算属性
 
-### `kind`
+### `object`
 `String`
 
-不可变的 String，值为 `'block'` 以便于将这类节点与 [`Inline`](./inline.md) 和 [`Text`](./text.md) 节点区分开。
+不可变的 String，值为 `'block'` 以便于将这类节点与 [`Inline`](./Inline.md) 和 [`Text`](./Text.md) 节点区分开。
+
+### ~~`kind`~~ <span></span>废弃
+`String`
+
+不可变的 String，值为 `'block'` 以便于将这类节点与 [`Inline`](./Inline.md) 和 [`Text`](./Text.md) 节点区分开。
 
 ### `text`
 `String`
 
-该节点的全部子 [`Text`](./text.md) 节点连接成的字符串。
+该节点的所有子 [`Text`](./text.md) 节点内容拼接成的字符串。
 
 
-## Static Methods
+## 静态方法
 
-### `Block.create`
-`Block.create(properties: Object) => Block`
+### `create`
+`create(properties: Object) => Block`
 
-由原生 JS `properties` 对象创建一个 block。
+根据一个纯净对象或者节点类型创建 Block 节点
 
-### `Block.createList`
-`Block.createList(array: Array) => List`
+### `createList`
+`createList(elements: Array<Any> | List<Any>) => List`
 
-由原生 JS `array` 数组创建一个 block 列表。
+由原生 JS `array` 数组或者 `List` 创建一个 block 的 `List`。
 
-### `Block.fromJSON`
-`Block.fromJSON(object: Object) => Block`
+### `fromJSON`
+`fromJSON(obj: Object) => Block`
 
 由 JSON `object` 创建一个 block。
 
-### `Block.isBlock`
-`Block.isBlock(maybeBlock: Any) => Boolean`
+### `isBlock`
+`isBlock(maybeBlock: Any) => Boolean`
 
-返回传入的参数是否为 `Block` 的 boolean 值。
+返回传入的参数是否为 `Block` 。
+
+### `isBlockList`
+`isBlockList(elements: Any) => Boolean`
+
+返回传入的参数是否为多个 `Block` 组成的 `List`。
 
 
-## Node Methods
-
-Block 实现了 [`Node`](./node.md) 接口。对所有 node 方法的相关信息，参见 [`Node` 文档](./node.md)。
-
-
-## Instance Methods
+## 实例方法
 
 ### `toJSON`
-`toJSON() => Object`
+`toJSON(options: Object) => Object`
 
 返回 block 的 JSON 表示。
+
+### `toJS` 
+`alias toJSON`
+
+### `isEmpty`
+isEmpty() => Boolean
+
+是否是空节点。
