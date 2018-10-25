@@ -5,7 +5,7 @@
 import { Inline } from 'slate'
 ```
 
-Slate [`Document`](./Document.md) Inline 节点实现了 [`Node`](./Node.md) 接口。
+Slate [`Document`](./document.md) Inline 节点实现了 [`Node`](./node.md) 接口。
 
 Block 节点可以包含嵌套的 inline 节点以及 text 节点——就像 DOM 一样。它始终包含至少一个 text 节点作为子节点。
 
@@ -27,6 +27,7 @@ Block 节点可以包含嵌套的 inline 节点以及 text 节点——就像 DO
 - [实例方法](#实例方法)
   - [`toJSON`](#toJSON)
   - [`toJS`](#toJS)
+  - [`isEmpty`](#isEmpty)
 
 
 ## Properties
@@ -126,7 +127,7 @@ Inline({
 返回 inline 的 JSON 表示。
 
 ### `toJS`
-`alias toJS`
+alias  `toJSON`
 
 ### `isEmpty`
 isEmpty() => Boolean

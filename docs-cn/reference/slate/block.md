@@ -27,7 +27,9 @@ Block 节点可以包含嵌套的 block 节点、inline 节点，以及 text 节
   - [`isBlock`](#isBlock)
   - [`isBlockList`](#isBlockList)
 - [实例方法](#实例方法)
-  - [`toJSON`](#tojson)
+  - [`toJSON`](#toJSON)
+  - [`toJS`](#toJS)
+  - [`isEmpty`](#isEmpty)
 
 
 ## 属性
@@ -124,7 +126,7 @@ Block({
 返回 block 的 JSON 表示。
 
 ### `toJS` 
-`alias toJSON`
+alias  `toJSON`
 
 ### `isEmpty`
 isEmpty() => Boolean
